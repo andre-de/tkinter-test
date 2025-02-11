@@ -1,35 +1,19 @@
-from tkinter import Tk, BOTH, Canvas
-
-
-class Window:
-    def __init__(self, width, height):
-        self._width = width
-        self._height = height
-        self._root = Tk()
-        self._root.title("Title")
-        self._root.geometry(str(width)+"x"+str(height))
-        self._canvas = Canvas(self._root)
-        self._canvas.pack(fill=BOTH, expand=True)
-        self._running = False
-        self._root.protocol("WM_DELETE_WINDOW", self.close)
-    
-    def redraw(self):
-        self._root.update_idletasks()
-        self._root.update()
-    
-    def wait_for_close(self):
-        self._running = True
-        while self._running:
-            self.redraw()
-    
-    def close(self):
-        self._running = False
-
-
-
+from classes import Window, Point, Line
 
 def main():
     win = Window(800, 600)
+
+    point1 = Point(100, 100)
+    point2 = Point(200, 200)
+    line1 = Line(point1, point2)
+    win.draw_line(line1, "black")
+
+    point3 = Point(500, 10)
+    point4 = Point(10, 500)
+    line2 = Line(point3, point4)
+    win.draw_line(line2, "red")
+
+    
     win.wait_for_close()
 
 
