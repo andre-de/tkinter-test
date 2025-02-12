@@ -25,6 +25,8 @@ def main():
     cell3.has_top_wall = False
     cell3.has_bottom_wall = False
     cell3.draw(500, 100, 600, 200)
+
+    cell1.draw_move(cell2)
     
     win.wait_for_close()
 

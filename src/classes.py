@@ -54,6 +54,8 @@ class Cell:
         self._win = win
 
     def draw(self, xtlc, ytlc, xbrc, ybrc):
+        if self._win is None:
+            return
         self._xtlc = xtlc
         self._ytlc = ytlc
         self._xbrc = xbrc
@@ -74,5 +76,15 @@ class Cell:
         if self.has_bottom_wall:
             bottom_wall = Line(Point(self._xtlc, self._ybrc), Point(self._xbrc, self._ybrc))
             self._win.draw_line(bottom_wall, "black")
+    
+    def draw_move(self, to_cell, undo=False):
+        if undo:
+            fill_color = "red"
+        else:
+            fill_color = "gray"
+        line = Line(Point((self._xtlc+self._xbrc)//2, (self._ytlc + self._ybrc)//2), 
+                     Point((to_cell._xtlc+to_cell._xbrc)//2, (to_cell._ytlc + to_cell._ybrc)//2))
+        self._win.draw_line(line, fill_color)
+
 
     
