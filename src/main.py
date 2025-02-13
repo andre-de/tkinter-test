@@ -1,7 +1,7 @@
-from classes import Window, Point, Line, Cell
+from classes import Window, Point, Line, Cell, Maze
 
 def main():
-    win = Window(800, 600)
+    
 
     '''
     point1 = Point(100, 100)
@@ -13,7 +13,7 @@ def main():
     point4 = Point(10, 500)
     line2 = Line(point3, point4)
     win.draw_line(line2, "red")
-    '''
+    
     cell1 = Cell(win)
     cell1.draw(100, 100, 200, 200)
 
@@ -27,11 +27,19 @@ def main():
     cell3.draw(500, 100, 600, 200)
 
     cell1.draw_move(cell2)
-    
+    '''
+    num_rows = 12
+    num_cols = 16
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / num_cols
+    cell_size_y = (screen_y - 2 * margin) / num_rows
+    win = Window(screen_x, screen_y)
+
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
+
     win.wait_for_close()
-
-
-
 
 
 if __name__ == "__main__":
